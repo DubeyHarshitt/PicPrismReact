@@ -1,10 +1,12 @@
 import React from "react";
-import Herosection from "../Components/Herosection";
+import HeroSection from "../Components/HeroSection";
+import PhotoGallery from "../Components/PhotoGallery";
 
 const Home = () => {
   return (
       <div className="mt-36">
-        <Herosection/>
+        <HeroSection/>
+        <PhotoGallery/>
       </div>
   );
 };
