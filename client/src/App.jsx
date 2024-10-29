@@ -10,6 +10,7 @@ import Error from "./Pages/Error"
 
 // Components
 import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer";
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
           {/* Catch-all route for undefined paths */}
         <Route path="*" element={<Error />} />
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </>
   );

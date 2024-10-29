@@ -57,6 +57,55 @@ const PhotoGallery = () => {
             <IoIosHeart className="text-2xl text-red-500 hover:text-red-700 cursor-pointer hover:scale-110 transition-all ease-linear duration-300" />
           }
         />
+
+        <ImageCard
+          id={"4"}
+          title={"Doge"}
+          price={1299}
+          author={"harshit20"}
+          img={
+            "https://images.pexels.com/photos/733745/pexels-photo-733745.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+          }
+          icon1={
+            <FaCartShopping className="text-2xl text-black cursor-pointer hover:scale-110 transition-all ease-linear duration-300" />
+          }
+          icon2={
+            <IoIosHeart className="text-2xl text-red-500 hover:text-red-700 cursor-pointer hover:scale-110 transition-all ease-linear duration-300" />
+          }
+        />
+        {/*  */}
+
+        <ImageCard
+          id={"5"}
+          title={"Car is Life"}
+          price={1399}
+          author={"harshit20"}
+          img={
+            "https://images.pexels.com/photos/1075947/pexels-photo-1075947.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+          }
+          icon1={
+            <FaCartShopping className="text-2xl text-black cursor-pointer hover:scale-110 transition-all ease-linear duration-300" />
+          }
+          icon2={
+            <IoIosHeart className="text-2xl text-red-500 hover:text-red-700 cursor-pointer hover:scale-110 transition-all ease-linear duration-300" />
+          }
+        />
+
+        <ImageCard
+          id={"6"}
+          title={"BMW"}
+          price={1299}
+          author={"harshit20"}
+          img={
+            "https://images.pexels.com/photos/13182965/pexels-photo-13182965.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+          }
+          icon1={
+            <FaCartShopping className="text-2xl text-black cursor-pointer hover:scale-110 transition-all ease-linear duration-300" />
+          }
+          icon2={
+            <IoIosHeart className="text-2xl text-red-500 hover:text-red-700 cursor-pointer hover:scale-110 transition-all ease-linear duration-300" />
+          }
+        />
       </div>
     </div>
   );
