@@ -1,8 +1,13 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 const Footer = () => {
+
+  const { pathname } = useLocation();
+
   return (
-    <div className="flex flex-col mx-3 bg-white rounded-lg mt-5">
+    <div className={`flex flex-col mx-3 bg-white rounded-lg mt-5
+     ${pathname === "/seller/profile" || pathname === "/buyer/profile" ? "hidden" : ""}`}>
       <div className="w-full draggable">
         <div className="container flex flex-col mx-auto">
           <div className="flex flex-col items-center w-full my-20">
@@ -23,7 +28,7 @@ const Footer = () => {
 const Logo = () => {
     return (
       <img
-        src="/public/logo.png"
+        src="/logo.png"
         alt="Logo"
         width="140" 
       />

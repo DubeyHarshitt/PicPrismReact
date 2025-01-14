@@ -1,33 +1,24 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, } from "react-router-dom";
 
-// Pages
-import Home from "./Pages/Home";
-import Login from "./Pages/Login";
-import Signup from "./Pages/Signup";
-import SellerDashbord from "./Pages/SellerDashbord";
-import BuyerDashord from "./Pages/BuyerDashord";
-import Error from "./Pages/Error"
+// REDUX Toolkit
+import { Provider } from "react-redux"
+import { store } from "../Store/Store"
 
 // Components
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
+import GsapTransition from "./Components/GsapTransition";
 
 export default function App() {
   return (
     <>
+    <Provider store={store} >
       <BrowserRouter>
-      <Navbar/>
-        <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/login" element={<Login/>} />
-          <Route path="/signup" element={<Signup/>} />
-          <Route path="/seller/profile" element={<SellerDashbord/>} />
-          <Route path="/buyer/profile" element={<BuyerDashord/>} />
-          {/* Catch-all route for undefined paths */}
-        <Route path="*" element={<Error />} />
-        </Routes>
+        <Navbar/> 
+        <GsapTransition/>
         <Footer/>
       </BrowserRouter>
+    </Provider>
     </>
   );
 }
