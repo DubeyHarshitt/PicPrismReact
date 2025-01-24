@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import useUpload from "../../hooks/UseUpload";
+import useUpload from "../hooks/UseUpload";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import ProgressBar from "@ramonak/react-progress-bar"
 
 const ImageAdd = () => {
-
     const [image , setImage] = useState(null);
     const [progress , setProgress] = useState(0);
 
@@ -20,48 +19,54 @@ const ImageAdd = () => {
     const onUploadProgress = (progressEvent) => {
         setProgress(Math.round(( progressEvent.loaded * 100 )/ progressEvent.total));
     }
-
+    
     const addPost = async (e) => {
         e.preventDefault();
         try {
-            const title = e.target.title.value;
-            const price = e.target.price.value; 
-            if(!title || !price) return toast.error("Please Fill all the Fields");
-            if(title.trim === "" || price.trim === "") return toast.error("Please Fill all the Fields");
-            
-            const { public_id, secure_url } = await useUpload({
-                image,
-                onUploadProgress,
-            });
-
-            if(!public_id || !secure_url) return toast.error("Image Upload Failed");
-
-            const res = await axios.post(import.meta.env.VITE_API_URL + "/post/create", {
-                title,
-                price,
-                image: secure_url,
-                public_id: public_id,
-                author,
-            }, {
-                headers : {
-                    "Authorization" : "Bearer " + localStorage.getItem("accessToken"),
-                }
+          const title = e.target.title.value;
+          const price = e.target.price.value;
+      
+          if (!title || !price) return toast.error("Please fill all the fields");
+          if (title.trim() === "" || price.trim() === "") return toast.error("Please fill all the fields");
+      
+          const { public_id, secure_url } = await useUpload({
+            image,
+            onUploadProgress,
+          });
+      
+          if (!public_id || !secure_url) return toast.error("Image upload failed");
+      
+          const res = await axios.post(
+            `${import.meta.env.VITE_API_URL}/post/create`,
+            {
+              title,
+              price,
+              image: secure_url,
+              publicId: public_id,
+              author,
+            },
+            {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("accessToken"),
+              },
             }
-        );
+          );
 
-        const data = await res.data;
-        if(data.success === true) {
+          const data = res.data;
+      
+          if (data.success) {
             toast.success(data.message);
             e.target.reset();
             setImage(null);
             setProgress(0);
-        }
-
+          }
         } catch (error) {
-            return toast.error(error.response.data.message)
+          console.error("Post creation error:", error || error.message);
+          toast.error(error.response?.data?.message || "An error occurred");
         }
-    }
-
+      };
+      
+      
   return (
     <div className="p-5 bg-white mx-9 rounded-2xl shadow-md">
       <h2 className="text-xl font-bold">Add New Products</h2>
@@ -89,7 +94,7 @@ const ImageAdd = () => {
         </div>
         <div className="flex flex-col ">
             <label htmlFor="price" className="font-bold">Price</label>
-            <input type="text" placeholder="500₹" name="price" id="price" className="rounded-lg outline-none border px-3 py-1 mt-1" required />
+            <input type="text" placeholder="500₹" name="price" id="price" className="rounded-lg outline-none border px-3 py-1 mt-1" required autoComplete="off" />
         </div>
         <button type="submit" className="bg-black text-white rounded-lg py-1 px-3 mt-2 font-semibold">Add New Products</button>
       </form>

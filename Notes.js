@@ -32,3 +32,8 @@
 
 // PORT=3000
 // MONGODB_URI="mongodb+srv://harshitdubey02004:harshit@initpics.0idpj.mongodb.net/"
+
+
+// models -> controllers -> routes -> 
+// for posts
+// postModel -> postController -> postRouter

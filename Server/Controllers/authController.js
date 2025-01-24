@@ -36,14 +36,14 @@ const signup = async (req, res)=>{
 };
 
 const login = async (req, res)=>{
-    const { email, password}= req.body;
+    const { email, password }= req.body;
     try {
         let user = await User.findOne({ email });
         if(!user){
             return res.status(400).json({ success:false, message: "Please SignUp "});
         }
 
-        const comparePassword = bcrypt.compare(password, user.password);
+        const comparePassword = await bcrypt.compare(password, user.password);
         if(!comparePassword) return res.status(400).json({ success:false, message:"Invalid Credentials" });
 
         const data = {
@@ -53,8 +53,8 @@ const login = async (req, res)=>{
         };
         const accessToken = generateAccessToken(data);
         const refreshToken = generateRefreshToken(data);
-        console.log("accessToken  :-  "+accessToken);
-        console.log("refreshToken  :-  "+refreshToken);
+        // console.log("accessToken  :-  "+accessToken);
+        // console.log("refreshToken  :-  "+refreshToken);
 
 
         return res.status(200).json({ success:true, message:"Login Successful", accessToken: accessToken, refreshToken: refreshToken, role: user.accountType, author: user.username });
